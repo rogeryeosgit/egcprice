@@ -92,7 +92,7 @@ export default {
       )
     },
     iconSRC: function() {
-      return this.icon + ' pic.png'
+      return this.icon + 'Logo.png'
     }
   },
 }
