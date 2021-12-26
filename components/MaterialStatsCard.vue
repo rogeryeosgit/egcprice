@@ -6,7 +6,7 @@
   >
     <template #subtitle>
       <div
-        class="text-right text-h3 v-card__subtitle--material-stats"
+        class="text-right text-h4 v-card__subtitle--material-stats"
         v-text="value"
       />
     </template>

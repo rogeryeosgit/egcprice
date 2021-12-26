@@ -1,6 +1,6 @@
 <template>
   <div>
-    <v-img src="/Grey Dawn.jpg" :cover="true" height="350"> </v-img>
+    <v-img src="/Grey Dawn.jpg" :cover="true" width=100%> </v-img>
     <v-container id="dashboard-view" fluid tag="section">
       <br />
       <v-row>
