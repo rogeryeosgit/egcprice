@@ -1,0 +1,27 @@
+{
+  "name": "egcprice",
+  "version": "1.0.0",
+  "description": "EGC Price Listing",
+  "author": "RogerY",
+  "private": true,
+  "scripts": {
+    "dev": "cross-env NODE_ENV=development nodemon server/index.js --watch server",
+    "build": "nuxt build",
+    "start": "cross-env NODE_ENV=production node server/index.js",
+    "generate": "nuxt generate"
+  },
+  "dependencies": {
+    "@nuxtjs/axios": "^5.3.6",
+    "axios": "^0.24.0",
+    "cross-env": "^5.2.0",
+    "currency.js": "^2.0.4",
+    "express": "^4.16.4",
+    "moralis": "^0.0.176",
+    "nuxt": "^2.0.0"
+  },
+  "devDependencies": {
+    "@nuxtjs/vuetify": "^1.0.0",
+    "nodemon": "^1.18.9",
+    "prettier": "^1.19.1"
+  }
+}
