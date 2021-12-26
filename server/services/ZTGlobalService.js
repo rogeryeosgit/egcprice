@@ -13,13 +13,13 @@ var ZTGlobalService = {
             ztData = await axios.get(ZTGlobalUrl);
             price = {
                 exchangeName: 'ZTGlobal',
-                usdValue: currency(ztData[0].price, {
+                usdValue: currency(ztData.data[0].price, {
                     precision: 9
                 }).format(),
                 timestamp: Date.now(),
             }
         } catch (e) {
-            console.log("Error in BitMart Service : " + e);
+            console.log("Error in ZTGlobal Service : " + e);
             return e;
         }
         return price;

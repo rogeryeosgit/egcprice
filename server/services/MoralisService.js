@@ -1,6 +1,6 @@
 const Moralis = require('moralis/node');
-const serverUrl = process.env.MORALIS_SERVER_URL;
-const appID = process.env.MORALIS_APP_ID;
+const serverUrl = 'https://lt3zg5fydzzc.usemoralis.com:2053/server'; // process.env.MORALIS_SERVER_URL;
+const appID = 'L2jhlkp3BIc0MnNo730wmvjwCHOnY7NFzr9PSdHl'; // process.env.MORALIS_APP_ID;
 const currency = require("currency.js");
 
 var MoralisService = {
