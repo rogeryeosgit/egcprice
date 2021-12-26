@@ -3,7 +3,7 @@ const consola = require('consola')
 const { Nuxt, Builder } = require('nuxt')
 const app = express()
 
-var MoralisService = require("./services/moralisService");
+var MoralisService = require("../server/services/moralisService");
 
 // Import and Set Nuxt.js options
 const config = require('../nuxt.config.js')
