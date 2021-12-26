@@ -1,7 +1,7 @@
 var express = require("express");
 var router = express.Router();
-var MoralisService = require("../services/moralisService");
-var BitMartService = require("../services/bitMartService");
+var MoralisService = require("../services/MoralisService");
+var BitMartService = require("../services/BitMartService");
 
 router.get("/prices/all", async function (req, res) {
 
