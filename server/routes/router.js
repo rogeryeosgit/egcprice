@@ -2,6 +2,7 @@ var express = require("express");
 var router = express.Router();
 var MoralisService = require("../services/MoralisService");
 var BitMartService = require("../services/BitMartService");
+var ZTGlobalService = require("../services/ZTGlobalService");
 
 router.get("/prices/all", async function (req, res) {
 
@@ -18,6 +19,12 @@ router.get("/prices/all", async function (req, res) {
         priceList.push(bmData);
      }).catch(error => {
         console.log("Error Getting Price for BitMart : " + error);
+    });
+
+    await ZTGlobalService.getPrice().then(function (ztData) {
+        priceList.push(ztData);
+     }).catch(error => {
+        console.log("Error Getting Price for ZT Global : " + error);
     });
 
     res.send(priceList);
