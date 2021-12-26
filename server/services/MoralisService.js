@@ -3,7 +3,7 @@ const serverUrl = "https://lt3zg5fydzzc.usemoralis.com:2053/server";
 const appID = "L2jhlkp3BIc0MnNo730wmvjwCHOnY7NFzr9PSdHl";
 const currency = require("currency.js");
 
-var MService = {
+var MoralisService = {
 
     init: function () {
         Moralis.start({ serverUrl, appID });
@@ -37,6 +37,6 @@ var MService = {
     }
 };
 
-module.exports = MService;
+module.exports = MoralisService;
 
 
