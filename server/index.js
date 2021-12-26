@@ -4,6 +4,7 @@ const { Nuxt, Builder } = require('nuxt')
 const app = express()
 
 var MoralisService = require("./services/MoralisService");
+var CacheService = require("./services/CacheService");
 
 // Import and Set Nuxt.js options
 const config = require('../nuxt.config.js')
@@ -23,6 +24,7 @@ async function start () {
   }
 
   MoralisService.init();
+  CacheService.init();
 
   // Give nuxt middleware to express
   app.use(nuxt.render)
