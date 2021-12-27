@@ -25,10 +25,9 @@ export const actions = {
             params: {
                 authK: process.env.EGC_APP_KEY
             }
-        }) //because on server side and not this.$axios
-            .then(data => {
-                vuexContext.commit('priceStore/setPriceList', data);
-            }).catch(e => console.error(e));
+        }).then(data => {
+            vuexContext.commit('priceStore/setPriceList', data);
+        }).catch(e => console.error(e));
     }
 }
 
