@@ -1,7 +1,7 @@
 {
   "name": "egcprice",
   "version": "1.0.0",
-  "description": "EGC Price Listing",
+  "description": "EGC Price Listing on Decentralized (DEX) and Centralized Exchanges (CEX)",
   "author": "RogerY",
   "private": true,
   "scripts": {

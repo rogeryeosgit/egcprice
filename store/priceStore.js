@@ -30,7 +30,7 @@ export const mutations = {
             }
         }
     },
-    updatePlan(state, priceData) {
+    updatePriceData(state, priceData) {
         for (let i in state.priceList) {
             if (state.priceList[i].exchangeName === priceData.exchangeName) {
                 state.priceList[i].usdValue = priceData.usdValue;
@@ -42,24 +42,17 @@ export const mutations = {
 
 export const actions = {
 
-    /*
-
-    Refresh PriceList or Per Exchange?
-
-    async refreshPassage(vuexContext, req) {
-        var chosenPlan = vuexContext.rootState.planStore.chosenPlan;
-        return await this.$axios.$get('/passages/today', {
+    async refreshPriceList(vuexContext, req) {
+        return await this.$axios.$get('/prices/all', {
             params: {
-                planID: chosenPlan
+                authK: process.env.EGC_APP_KEY
             }
         }).then(data => {
-            vuexContext.commit('setTodaysPassage', data.passages[0])
-            vuexContext.commit('setTodaysReference', data.canonical)
+            vuexContext.commit('setPriceList', data);
         }).catch(e => {
             console.log(e);
         });
     }
-    */
 }
 
 export const getters = {

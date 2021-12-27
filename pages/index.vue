@@ -1,6 +1,6 @@
 <template>
   <div>
-    <v-img src="/Grey Dawn.jpg" :cover="true" width=100%> </v-img>
+    <v-img src="/Grey Dawn.jpg" :cover="true" width="100%"> </v-img>
     <v-container id="dashboard-view" fluid tag="section">
       <br />
       <v-row>
@@ -30,6 +30,9 @@ import MaterialStatsCard from '~/components/MaterialStatsCard.vue'
 const rtf = new Intl.RelativeTimeFormat('en')
 
 export default {
+  mounted: function () {
+    setInterval(this.refreshPriceList, 7777)
+  },
   components: {
     MaterialStatsCard,
   },
@@ -51,6 +54,11 @@ export default {
         })
       }
       return displayPriceList
+    },
+  },
+  methods: {
+    refreshPriceList: function () {
+      this.$store.dispatch('priceStore/refreshPriceList')
     },
   },
 }
