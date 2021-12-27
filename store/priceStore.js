@@ -43,11 +43,7 @@ export const mutations = {
 export const actions = {
 
     async refreshPriceList(vuexContext, req) {
-        return await this.$axios.$get('/prices/all', {
-            params: {
-                authK: process.env.EGC_APP_KEY
-            }
-        }).then(data => {
+        return await this.$axios.$get('/prices/all').then(data => {
             vuexContext.commit('setPriceList', data);
         }).catch(e => {
             console.log(e);

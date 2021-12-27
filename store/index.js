@@ -21,11 +21,7 @@ export const mutations = {
 
 export const actions = {
     async nuxtServerInit(vuexContext, context) {
-        return await context.app.$axios.$get('/prices/all', {
-            params: {
-                authK: process.env.EGC_APP_KEY
-            }
-        }).then(data => {
+        return await context.app.$axios.$get('/prices/all').then(data => {
             vuexContext.commit('priceStore/setPriceList', data);
         }).catch(e => console.error(e));
     }
