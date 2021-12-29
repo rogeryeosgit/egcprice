@@ -49,7 +49,7 @@ export default {
             rtf.format((pList[x].timestamp - Date.now()) / 1000, 'second'),
           color: '#FFFFFF',
           icon: pList[x].exchangeName,
-          title: pList[x].exchangeName + ' Price',
+          title: pList[x].exchangeName + ' EGC Price',
           value: pList[x].usdValue,
         })
       }
