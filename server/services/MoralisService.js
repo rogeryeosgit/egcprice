@@ -9,7 +9,7 @@ var MoralisService = {
         Moralis.start({ serverUrl, appID });
     },
 
-    getPrice: async function (exchangeName) {
+    getPrice: async function (exchangeName, setExchangePrice) {
         //Get token price on PancakeSwap v2 BSC
         const options = {
             address: "0xC001BBe2B87079294C63EcE98BdD0a88D761434e",
@@ -33,7 +33,7 @@ var MoralisService = {
             console.log("Error in Moralis Service : " + e);
             return e;
         }
-        return price;
+        setExchangePrice(exchangeName, price);
     }
 };
 

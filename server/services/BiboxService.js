@@ -4,7 +4,7 @@ const currency = require("currency.js");
 
 var BiboxService = {
 
-    getPrice: async function () {
+    getPrice: async function (setExchangePrice) {
 
         var bbData;
         var price;
@@ -22,7 +22,7 @@ var BiboxService = {
             console.log("Error in Bibox Service : " + e);
             return e;
         }
-        return price;
+        setExchangePrice(price.exchangeName, price);
     },
 }
 

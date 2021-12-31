@@ -4,7 +4,7 @@ const currency = require("currency.js");
 
 var BitMartService = {
 
-    getPrice: async function () {
+    getPrice: async function (setExchangePrice) {
 
         var mData;
         var price;
@@ -22,7 +22,7 @@ var BitMartService = {
             console.log("Error in BitMart Service : " + e);
             return e;
         }
-        return price;
+        setExchangePrice(price.exchangeName, price);
     },
 }
 

@@ -4,7 +4,7 @@ const currency = require("currency.js");
 
 var LBankService = {
 
-    getPrice: async function () {
+    getPrice: async function (setExchangePrice) {
 
         var lBankData;
         var price;
@@ -22,7 +22,7 @@ var LBankService = {
             console.log("Error in LBank Service : " + e);
             return e;
         }
-        return price;
+        setExchangePrice(price.exchangeName, price);
     },
 }
 

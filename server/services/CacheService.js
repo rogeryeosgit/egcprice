@@ -1,66 +1,99 @@
-var MoralisService = require("../services/MoralisService");
-var BitMartService = require("../services/BitMartService");
-var ZTGlobalService = require("../services/ZTGlobalService");
-var LBankService = require("../services/LBankService");
-var BiboxService = require("../services/BiboxService");
-var cron = require('node-cron');
-const NodeCache = require("node-cache");
-const EGCCache = new NodeCache();
-var priceList = [];
+var MoralisService = require('../services/MoralisService')
+var BitMartService = require('../services/BitMartService')
+var ZTGlobalService = require('../services/ZTGlobalService')
+var LBankService = require('../services/LBankService')
+var BiboxService = require('../services/BiboxService')
+var cron = require('node-cron')
+const NodeCache = require('node-cache')
+const EGCCache = new NodeCache()
 
 var CacheService = {
+  init: function() {
+    getUpdatedPrices() // initial setup
+    cron.schedule('*/20 * * * * *', async () => {
+      getUpdatedPrices()
+    })
+  },
 
-    init: function () {
+  getPriceList: function() {
+    var priceList = [];
+    var price;
 
-        getUpdatedPrices(); // initial setup
-        cron.schedule('*/20 * * * * *', async () => {
-            getUpdatedPrices();
-        });
-    },
-
-    getPriceList: function () {
-        return EGCCache.get("priceList");
+    price = EGCCache.get('PancakeSwap-V2');
+    if ( price == undefined ) {
+        console.log("CacheService: Pancakeswap price not in cache");
+    } else {
+        priceList.push(price);
     }
+
+    price = EGCCache.get('BitMart');
+    if ( price == undefined ) {
+        console.log("CacheService: BitMart price not in cache");
+    } else {
+        priceList.push(price);
+    }
+
+    price = EGCCache.get('ZTGlobal');
+    if ( price == undefined ) {
+        console.log("CacheService: ZTGlobal price not in cache");
+    } else {
+        priceList.push(price);
+    }
+
+    price = EGCCache.get('LBank');
+    if ( price == undefined ) {
+        console.log("CacheService: LBank price not in cache");
+    } else {
+        priceList.push(price);
+    }
+
+    price = EGCCache.get('Bibox');
+    if ( price == undefined ) {
+        console.log("CacheService: Bibox price not in cache");
+    } else {
+        priceList.push(price);
+    }
+
+    return priceList;
+  }
 }
 
-module.exports = CacheService;
+module.exports = CacheService
 
+function setExchangePrice(exchangeName, priceData) {
+  EGCCache.set(exchangeName, priceData, 3600)
+}
 
 // Function to get prices from all exchanges
-async function getUpdatedPrices() {
-    // empty priceList
-    priceList.length = 0;
+function getUpdatedPrices() {
+  // getting PCS price
+  try {
+    MoralisService.getPrice('PancakeSwap-V2', setExchangePrice)
+  } catch (error) {
+    console.log('CacheService: Error Getting Price for PCS : ' + error)
+  }
 
-    // getting PCS price
-    await MoralisService.getPrice("PancakeSwap-V2").then(function (pcsData) {
-        priceList.push(pcsData);
-    }).catch(error => {
-        console.log("Error Getting Price for PCS : " + error);
-    });
+  try {
+    BitMartService.getPrice(setExchangePrice)
+  } catch (error) {
+    console.log('CacheService: Error Getting Price for BitMart : ' + error)
+  }
 
-    await BitMartService.getPrice().then(function (bmData) {
-        priceList.push(bmData);
-    }).catch(error => {
-        console.log("Error Getting Price for BitMart : " + error);
-    });
+  try {
+    ZTGlobalService.getPrice(setExchangePrice)
+  } catch (error) {
+    console.log('CacheService: Error Getting Price for ZT Global : ' + error)
+  }
 
-    await ZTGlobalService.getPrice().then(function (ztData) {
-        priceList.push(ztData);
-    }).catch(error => {
-        console.log("Error Getting Price for ZT Global : " + error);
-    });
+  try {
+    LBankService.getPrice(setExchangePrice)
+  } catch (error) {
+    console.log('CacheService: Error Getting Price for LBank : ' + error)
+  }
 
-    await LBankService.getPrice().then(function (lbData) {
-        priceList.push(lbData);
-    }).catch(error => {
-        console.log("Error Getting Price for LBank : " + error);
-    });
-
-    await BiboxService.getPrice().then(function (bbData) {
-        priceList.push(bbData);
-    }).catch(error => {
-        console.log("Error Getting Price for Bibox : " + error);
-    });
-
-    EGCCache.set("priceList", priceList, 3600);
+  try {
+    BiboxService.getPrice(setExchangePrice)
+  } catch (error) {
+    console.log('CacheService: Error Getting Price for Bibox : ' + error)
+  }
 }

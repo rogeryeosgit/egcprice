@@ -4,7 +4,7 @@ const currency = require("currency.js");
 
 var ZTGlobalService = {
 
-    getPrice: async function () {
+    getPrice: async function (setExchangePrice) {
 
         var ztData;
         var price;
@@ -22,7 +22,7 @@ var ZTGlobalService = {
             console.log("Error in ZTGlobal Service : " + e);
             return e;
         }
-        return price;
+        setExchangePrice(price.exchangeName, price);
     },
 }
 
