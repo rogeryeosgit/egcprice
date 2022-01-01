@@ -1,11 +1,12 @@
-var MoralisService = require('../services/MoralisService')
-var BitMartService = require('../services/BitMartService')
-var ZTGlobalService = require('../services/ZTGlobalService')
-var LBankService = require('../services/LBankService')
-var BiboxService = require('../services/BiboxService')
-var cron = require('node-cron')
-const NodeCache = require('node-cache')
-const EGCCache = new NodeCache()
+var MoralisService = require('../services/MoralisService');
+var BitMartService = require('../services/BitMartService');
+var ZTGlobalService = require('../services/ZTGlobalService');
+var LBankService = require('../services/LBankService');
+var BiboxService = require('../services/BiboxService');
+var HotbitService = require('../services/HotbitService');
+var cron = require('node-cron');
+const NodeCache = require('node-cache');
+const EGCCache = new NodeCache();
 
 var CacheService = {
   init: function() {
@@ -54,6 +55,13 @@ var CacheService = {
         priceList.push(price);
     }
 
+    price = EGCCache.get('Hotbit');
+    if ( price == undefined ) {
+        console.log("CacheService: Hotbit price not in cache");
+    } else {
+        priceList.push(price);
+    }
+
     return priceList;
   }
 }
@@ -95,5 +103,11 @@ function getUpdatedPrices() {
     BiboxService.getPrice(setExchangePrice)
   } catch (error) {
     console.log('CacheService: Error Getting Price for Bibox : ' + error)
+  }
+
+  try {
+    HotbitService.getPrice(setExchangePrice)
+  } catch (error) {
+    console.log('CacheService: Error Getting Price for Hotbit : ' + error)
   }
 }
