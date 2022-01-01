@@ -55,7 +55,7 @@ module.exports = {
   ** See https://axios.nuxtjs.org/options
   */
   axios: {
-    browserBaseURL: 'https://www.egcprice.info'
+    browserBaseURL: process.env.BROWSER_BASE_URL || 'https://www.egcprice.info'
   },
   /*
   ** vuetify module configuration

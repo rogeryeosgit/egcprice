@@ -17,6 +17,7 @@ var BiboxService = {
                     precision: 9
                 }).format(),
                 timestamp: Date.now(),
+                exchangeURL: 'https://www.bibox.com/en/exchange/basic/EGC_USDT'
             }
         } catch (e) {
             console.log("Error in Bibox Service : " + e);

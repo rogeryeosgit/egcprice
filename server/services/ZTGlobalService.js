@@ -17,6 +17,7 @@ var ZTGlobalService = {
                     precision: 9
                 }).format(),
                 timestamp: Date.now(),
+                exchangeURL: 'https://www.ztb.im/exchange?coin=EGC_USDT'
             }
         } catch (e) {
             console.log("Error in ZTGlobal Service : " + e);

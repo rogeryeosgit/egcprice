@@ -1,30 +1,32 @@
 <template>
   <AppCard v-bind="$attrs" class="v-card--material mt-4">
     <v-card-title class="align-start">
-      <v-sheet
-        :color="color"
-        :width="fullHeader ? '100%' : undefined"
-        class="overflow-hidden mt-n9 transition-swing v-card--material__sheet"
-        elevation="6"
-        max-width="100%"
-        rounded
-      >
-        <v-theme-provider v-if="hasHeading" dark>
-          <div v-if="icon" :class="iconSmall ? 'pa-7' : 'pa-8'">
-            <!--<v-icon :large="!iconSmall" v-text="icon" /> -->
-            <v-img :src=iconSRC height="100" width="100"></v-img>
-          </div>
+      <a :href="exchangeURL" target="_blank">
+        <v-sheet
+          :color="color"
+          :width="fullHeader ? '100%' : undefined"
+          class="overflow-hidden mt-n9 transition-swing v-card--material__sheet"
+          elevation="6"
+          max-width="100%"
+          rounded
+        >
+          <v-theme-provider v-if="hasHeading" dark>
+            <div v-if="icon" :class="iconSmall ? 'pa-7' : 'pa-8'">
+              <!--<v-icon :large="!iconSmall" v-text="icon" /> -->
+              <v-img :src="iconSRC" height="100" width="100"></v-img>
+            </div>
 
-          <slot name="heading" />
+            <slot name="heading" />
 
-          <div
-            v-if="heading"
-            class="text-h4 white--text pa-7 v-card--material__title"
-          >
-            {{ heading }}
-          </div>
-        </v-theme-provider>
-      </v-sheet>
+            <div
+              v-if="heading"
+              class="text-h4 white--text pa-7 v-card--material__title"
+            >
+              {{ heading }}
+            </div>
+          </v-theme-provider>
+        </v-sheet>
+      </a>
 
       <div
         v-if="hasTitle"
@@ -77,6 +79,7 @@ export default {
     iconSmall: Boolean,
     subtitle: String,
     title: String,
+    exchangeURL: String,
   },
 
   computed: {
@@ -91,9 +94,9 @@ export default {
         this.$slots.subtitle
       )
     },
-    iconSRC: function() {
-      return "/" + this.icon + 'Logo.png'
-    }
+    iconSRC: function () {
+      return '/' + this.icon + 'Logo.png'
+    },
   },
 }
 </script>

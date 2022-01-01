@@ -28,6 +28,7 @@ var MoralisService = {
                     precision: 9
                 }).format(),
                 timestamp: Date.now(),
+                exchangeURL: 'https://pancakeswap.finance/info/token/0xc001bbe2b87079294c63ece98bdd0a88d761434e/'
             }
         } catch (e) {
             console.log("Error in Moralis Service : " + e);

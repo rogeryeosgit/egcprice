@@ -17,6 +17,7 @@ var LBankService = {
                     precision: 9
                 }).format(),
                 timestamp: Date.now(),
+                exchangeURL: 'https://www.lbank.info/exchange/egc/usdt'
             }
         } catch (e) {
             console.log("Error in LBank Service : " + e);

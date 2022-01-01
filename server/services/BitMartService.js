@@ -17,6 +17,7 @@ var BitMartService = {
                     precision: 9
                 }).format(),
                 timestamp: Date.now(),
+                exchangeURL: 'https://www.bitmart.com/trade/en?symbol=EGC_USDT&layout=basic'
             }
         } catch (e) {
             console.log("Error in BitMart Service : " + e);

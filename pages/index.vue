@@ -51,6 +51,7 @@ export default {
           icon: pList[x].exchangeName,
           title: pList[x].exchangeName + ' EGC Price',
           value: pList[x].usdValue,
+          exchangeURL: pList[x].exchangeURL,
         })
       }
       return displayPriceList
