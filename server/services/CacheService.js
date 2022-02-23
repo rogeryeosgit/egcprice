@@ -4,64 +4,74 @@ var ZTGlobalService = require('../services/ZTGlobalService');
 var LBankService = require('../services/LBankService');
 var BiboxService = require('../services/BiboxService');
 var HotbitService = require('../services/HotbitService');
+var BitrueService = require('../services/BitrueService');
+var AveragePriceEGCService = require('../services/AveragePriceEGCService');
 var cron = require('node-cron');
 const NodeCache = require('node-cache');
 const EGCCache = new NodeCache();
 
 var CacheService = {
-  init: function() {
+  init: function () {
     getUpdatedPrices() // initial setup
     cron.schedule('*/20 * * * * *', async () => {
       getUpdatedPrices()
     })
   },
 
-  getPriceList: function() {
+  getPriceList: function () {
     var priceList = [];
     var price;
+    
+    priceList.push(AveragePriceEGCService.getAveragePrice(EGCCache));
 
     price = EGCCache.get('PancakeSwap-V2');
-    if ( price == undefined ) {
-        console.log("CacheService: Pancakeswap price not in cache");
+    if (price == undefined) {
+      console.log("CacheService: Pancakeswap price not in cache");
     } else {
-        priceList.push(price);
+      priceList.push(price);
     }
 
     price = EGCCache.get('BitMart');
-    if ( price == undefined ) {
-        console.log("CacheService: BitMart price not in cache");
+    if (price == undefined) {
+      console.log("CacheService: BitMart price not in cache");
     } else {
-        priceList.push(price);
+      priceList.push(price);
     }
 
     price = EGCCache.get('ZTGlobal');
-    if ( price == undefined ) {
-        console.log("CacheService: ZTGlobal price not in cache");
+    if (price == undefined) {
+      console.log("CacheService: ZTGlobal price not in cache");
     } else {
-        priceList.push(price);
+      priceList.push(price);
     }
 
     price = EGCCache.get('LBank');
-    if ( price == undefined ) {
-        console.log("CacheService: LBank price not in cache");
+    if (price == undefined) {
+      console.log("CacheService: LBank price not in cache");
     } else {
-        priceList.push(price);
+      priceList.push(price);
     }
 
     price = EGCCache.get('Bibox');
-    if ( price == undefined ) {
-        console.log("CacheService: Bibox price not in cache");
+    if (price == undefined) {
+      console.log("CacheService: Bibox price not in cache");
     } else {
-        priceList.push(price);
+      priceList.push(price);
     }
 
     price = EGCCache.get('Hotbit');
-    if ( price == undefined ) {
-        console.log("CacheService: Hotbit price not in cache");
+    if (price == undefined) {
+      console.log("CacheService: Hotbit price not in cache");
     } else {
-        priceList.push(price);
+      priceList.push(price);
     }
 
+    price = EGCCache.get('Bitrue');
+    if (price == undefined) {
+      console.log("CacheService: Bitrue price not in cache");
+    } else {
+      priceList.push(price);
+    }
     return priceList;
   }
 }
@@ -109,5 +119,11 @@ function getUpdatedPrices() {
     HotbitService.getPrice(setExchangePrice)
   } catch (error) {
     console.log('CacheService: Error Getting Price for Hotbit : ' + error)
+  }
+
+  try {
+    BitrueService.getPrice(setExchangePrice)
+  } catch (error) {
+    console.log('CacheService: Error Getting Price for Bitrue : ' + error)
   }
 }
