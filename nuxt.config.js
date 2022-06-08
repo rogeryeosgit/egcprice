@@ -16,7 +16,8 @@ module.exports = {
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
-      { rel: 'preload', as: 'image', href: '/Grey Dawn.avif' }
+      { rel: 'preload', as: 'image', href: '/Grey Dawn.avif' },
+      { rel: 'preload', as: 'style', href: 'https://cdn.jsdelivr.net/npm/@mdi/font@latest/css/materialdesignicons.min.css'}
     ]
   },
   /*
