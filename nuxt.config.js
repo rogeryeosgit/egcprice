@@ -15,7 +15,8 @@ module.exports = {
       { property: 'og:image', content: 'https://www.egcprice.info/samplepage.png' }
     ],
     link: [
-      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
+      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
+      { rel: 'preload', as: 'image', href: '/Grey Dawn.avif' }
     ]
   },
   /*
