@@ -11,7 +11,7 @@ module.exports = {
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { hid: 'description', name: 'description', content: process.env.npm_package_description || '' },
+      { hid: 'description', name: 'description', content: 'EverGrow Coin price today on crypto exchanges. EGC token prices updated in real-time (Pancakeswap, BitMart, ZTGlobal, LBank, Bibox, Hotbit, Bitrue, DigiFinex and Coinsbit)' },
       { property: 'og:image', content: 'https://www.egcprice.info/samplepage.png' }
     ],
     link: [

@@ -2,7 +2,7 @@ const DFUrl = "https://openapi.digifinex.com/v3/ticker?symbol=egc_usdt";
 var axios = require('axios');
 const currency = require("currency.js");
 
-var DigifinexService = {
+var DigiFinexService = {
 
     getPrice: async function (setExchangePrice) {
 
@@ -12,7 +12,7 @@ var DigifinexService = {
         try {
             dfData = await axios.get(DFUrl);
             price = {
-                exchangeName: 'Digifinex',
+                exchangeName: 'DigiFinex',
                 usdValue: currency(dfData.data.ticker[0].last, {
                     precision: 9
                 }).format(),
@@ -20,11 +20,11 @@ var DigifinexService = {
                 exchangeURL: 'https://www.digifinex.com/en-ww/trade/USDT/EGC'
             }
         } catch (e) {
-            console.log("Error in Digifinex Service : " + e);
+            console.log("Error in DigiFinex Service : " + e);
             return e;
         }
         setExchangePrice(price.exchangeName, price);
     },
 }
 
-module.exports = DigifinexService;
+module.exports = DigiFinexService;

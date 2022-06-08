@@ -6,7 +6,8 @@ var BiboxService = require('../services/BiboxService');
 var HotbitService = require('../services/HotbitService');
 var BitrueService = require('../services/BitrueService');
 var AveragePriceEGCService = require('../services/AveragePriceEGCService');
-var DigifinexService = require('../services/DigifinexService');
+var DigiFinexService = require('../services/DigiFinexService');
+var CoinsbitService = require('../services/CoinsbitService');
 var cron = require('node-cron');
 const NodeCache = require('node-cache');
 const EGCCache = new NodeCache();
@@ -74,12 +75,20 @@ var CacheService = {
       priceList.push(price);
     }
 
-    price = EGCCache.get('Digifinex');
+    price = EGCCache.get('DigiFinex');
     if (price == undefined) {
-      console.log("CacheService: Digifinex price not in cache");
+      console.log("CacheService: DigiFinex price not in cache");
     } else {
       priceList.push(price);
     }
+
+    price = EGCCache.get('Coinsbit');
+    if (price == undefined) {
+      console.log("CacheService: Coinsbit price not in cache");
+    } else {
+      priceList.push(price);
+    }
+
     return priceList;
   }
 }
@@ -136,8 +145,14 @@ function getUpdatedPrices() {
   }
 
   try {
-    DigifinexService.getPrice(setExchangePrice)
+    DigiFinexService.getPrice(setExchangePrice)
   } catch (error) {
-    console.log('CacheService: Error Getting Price for Digifinex : ' + error)
+    console.log('CacheService: Error Getting Price for DigiFinex : ' + error)
+  }
+
+  try {
+    CoinsbitService.getPrice(setExchangePrice)
+  } catch (error) {
+    console.log('CacheService: Error Getting Price for Coinsbit : ' + error)
   }
 }
