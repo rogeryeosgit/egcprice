@@ -85,7 +85,8 @@ module.exports = {
           error: '#FF5252',
         }
       }
-    }
+    },
+    treeShake: true
   },
   /*
   ** Serverside middleware
