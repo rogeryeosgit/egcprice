@@ -2,43 +2,32 @@
   <AppCard v-bind="$attrs" class="v-card--material mt-4">
     <v-card-title class="align-start">
       <a :href="exchangeURL" target="_blank">
-        <v-sheet
-          :color="color"
-          :width="fullHeader ? '100%' : undefined"
-          class="overflow-hidden mt-n9 transition-swing v-card--material__sheet"
-          elevation="6"
-          max-width="100%"
-          rounded
-        >
+        <v-sheet :color="color" :width="fullHeader ? '100%' : undefined" class="overflow-hidden mt-n9 transition-swing v-card--material__sheet" elevation="6" max-width="100%" rounded>
           <v-theme-provider v-if="hasHeading" dark>
             <div v-if="icon" :class="iconSmall ? 'pa-7' : 'pa-8'">
               <!--<v-icon :large="!iconSmall" v-text="icon" /> -->
-              <v-img :src="iconSRC" height="100" width="100"></v-img>
+              <v-img :src="iconSRC" :alt="title + ' Exchange'" height="100" width="100"></v-img>
             </div>
 
             <slot name="heading" />
 
-            <div
-              v-if="heading"
-              class="text-h4 white--text pa-7 v-card--material__title"
-            >
+            <div v-if="heading" class="text-h4 white--text pa-7 v-card--material__title">
               {{ heading }}
             </div>
           </v-theme-provider>
         </v-sheet>
       </a>
 
-      <div
-        v-if="hasTitle"
-        :class="fullHeader ? 'pt-4' : 'pl-3'"
-        class="text-h4 v-card--material__title"
-      >
+      <div v-if="hasTitle" :class="fullHeader ? 'pt-4' : 'pl-3'" class="text-h4 v-card--material__title">
+
         <slot name="title" />
 
-        <template v-if="title">
-          {{ title }}
+        <template v-if="title && !isAverage">
+          <a :href="exchangeURL" target="_blank" :title="'EverGrow Coin on ' + title + ' Exchange'">{{title}}</a> EGC Price
         </template>
-
+        <template v-if="title && isAverage">
+          {{title}} EGC Price
+        </template>
         <div class="text-subtitle-1 mb-n4">
           <slot name="subtitle" />
 
@@ -97,6 +86,12 @@ export default {
     iconSRC: function () {
       return '/' + this.icon + 'Logo.avif'
     },
+    isAverage: function () {
+      if (this.title == 'Average') {
+        return true
+      }
+      return false
+    }
   },
 }
 </script>
@@ -107,4 +102,15 @@ export default {
     > .v-card--material__title
       flex: 1 1 auto
       word-break: break-word
+      color: black
+
+      a:link
+        color: blue
+        background-color: transparent
+        text-decoration: none
+
+      a:visited
+        color: blue
+        background-color: transparent
+        text-decoration: none
 </style>

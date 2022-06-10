@@ -1,6 +1,6 @@
 <template>
   <div>
-    <v-img src="/Grey Dawn.avif" :cover="true" width="100%"> </v-img>
+    <v-img src="/Grey Dawn.avif" :cover="true" width="100%" alt="EverGrow Coin prices on Exchanges"> </v-img>
     <v-container id="dashboard-view" fluid tag="section">
       <br />
       <v-row>
@@ -49,7 +49,7 @@ export default {
             rtf.format((pList[x].timestamp - Date.now()) / 1000, 'second'),
           color: '#FFFFFF',
           icon: pList[x].exchangeName,
-          title: pList[x].exchangeName + ' EGC Price',
+          title: pList[x].exchangeName,
           value: pList[x].usdValue,
           exchangeURL: pList[x].exchangeURL,
         })
