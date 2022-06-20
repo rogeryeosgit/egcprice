@@ -3,6 +3,7 @@ const serverUrl = process.env.MORALIS_SERVER_URL;
 const appID = process.env.MORALIS_APP_ID;
 const currency = require("currency.js");
 
+// Decommissioning this in favor of CoinGecko
 var MoralisService = {
 
     init: function () {

@@ -42,9 +42,12 @@
 
     <template v-if="$slots.actions">
       <v-divider class="mt-2 mx-4" />
-
       <v-card-actions class="px-4 text-caption grey--text">
         <slot name="actions" />
+        <v-spacer />
+        <template v-if="isPancakeSwap">
+          Powered by CoinGecko
+        </template>
       </v-card-actions>
     </template>
   </AppCard>
@@ -88,6 +91,12 @@ export default {
     },
     isAverage: function () {
       if (this.title == 'Average') {
+        return true
+      }
+      return false
+    },
+    isPancakeSwap: function () {
+      if (this.title == 'PancakeSwap') {
         return true
       }
       return false

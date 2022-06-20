@@ -17,7 +17,10 @@ var LBankService = {
                     precision: 9
                 }).format(),
                 timestamp: Date.now(),
-                exchangeURL: 'https://www.lbank.info/exchange/egc/usdt'
+                exchangeURL: 'https://www.lbank.info/exchange/egc/usdt',
+                exchangeVolume: currency(lBankData.data.data[0].ticker.turnover, {
+                    precision: 9
+                }).format()
             }
         } catch (e) {
             console.log("Error in LBank Service : " + e);

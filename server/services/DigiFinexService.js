@@ -17,7 +17,10 @@ var DigiFinexService = {
                     precision: 9
                 }).format(),
                 timestamp: Date.now(),
-                exchangeURL: 'https://www.digifinex.com/en-ww/trade/USDT/EGC'
+                exchangeURL: 'https://www.digifinex.com/en-ww/trade/USDT/EGC',
+                exchangeVolume: currency(dfData.data.ticker[0].base_vol, {
+                    precision: 9
+                }).format()
             }
         } catch (e) {
             console.log("Error in DigiFinex Service : " + e);

@@ -6,21 +6,38 @@ var AveragePriceEGCService = {
 
         // Getting average price for EGC
         var totalPrice = 0;
-        var averagePrice;
+        var totalVolume = 0;
+        var averagePrice = 0;
 
-        // Getting total EGC price for all exchanges
+        // Getting total EGC price and volume for all exchanges
         EGCCache.keys().forEach(exchange => {
             totalPrice = currency(totalPrice, {
                 precision: 9
             }).add(currency((EGCCache.get(exchange).usdValue), {
                 precision: 9
             }));
+
+            totalVolume = currency(totalVolume, {
+                precision: 9
+            }).add(currency((EGCCache.get(exchange).exchangeVolume), {
+                precision: 9
+            }));
         });
 
-        // Average all the prices from exchanges
-        averagePrice = currency(totalPrice, {
-            precision: 9
-        }).divide(EGCCache.keys().length);
+        // Calculating average for all the prices from exchanges
+        EGCCache.keys().forEach(exchange => {
+            var priceComponent = currency((EGCCache.get(exchange).exchangeVolume), {
+                precision: 14
+            }).divide(currency(totalVolume, {
+                precision: 14
+            })).multiply(currency(EGCCache.get(exchange).usdValue, {
+                precision: 14
+            }));
+
+            averagePrice = currency(averagePrice, {
+                precision: 9
+            }).add(priceComponent);
+        });
 
         var averageData = {
             exchangeName: 'Average',

@@ -1,4 +1,4 @@
-var MoralisService = require('../services/MoralisService');
+var CoinGeckoService = require('../services/CoinGeckoService');
 var BitMartService = require('../services/BitMartService');
 var ZTGlobalService = require('../services/ZTGlobalService');
 var LBankService = require('../services/LBankService');
@@ -26,7 +26,7 @@ var CacheService = {
     
     priceList.push(AveragePriceEGCService.getAveragePrice(EGCCache));
 
-    price = EGCCache.get('PancakeSwap-V2');
+    price = EGCCache.get('PancakeSwap');
     if (price == undefined) {
       console.log("CacheService: Pancakeswap price not in cache");
     } else {
@@ -103,7 +103,7 @@ function setExchangePrice(exchangeName, priceData) {
 function getUpdatedPrices() {
   // getting PCS price
   try {
-    MoralisService.getPrice('PancakeSwap-V2', setExchangePrice)
+    CoinGeckoService.getPrice(setExchangePrice)
   } catch (error) {
     console.log('CacheService: Error Getting Price for PCS : ' + error)
   }

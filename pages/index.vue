@@ -4,13 +4,7 @@
     <v-container id="dashboard-view" fluid tag="section">
       <br />
       <v-row>
-        <v-col
-          v-for="({ actionIcon, actionText, ...attrs }, i) in priceList"
-          :key="i"
-          cols="12"
-          md="6"
-          lg="3"
-        >
+        <v-col v-for="({ actionIcon, actionText, ...attrs }, i) in priceList" :key="i" cols="12" md="6" lg="3">
           <MaterialStatsCard v-bind="attrs">
             <template #actions>
               <v-icon class="mr-2" small v-text="actionIcon" />
