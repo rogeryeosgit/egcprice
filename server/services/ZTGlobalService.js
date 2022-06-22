@@ -16,6 +16,7 @@ var ZTGlobalService = {
             var eV24Hr = calculate24HrVolume(ztKLineData.data[0][5], ztKLineData.data[0][2], ztKLineData.data[0][3]);
             price = {
                 exchangeName: 'ZTGlobal',
+                pair: "EGC/USDT",
                 usdValue: currency(ztData.data[0].price, {
                     precision: 9
                 }).format(),

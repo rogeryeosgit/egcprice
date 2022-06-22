@@ -18,6 +18,7 @@ var CoinsbitService = {
             }
             price = {
                 exchangeName: 'Coinsbit',
+                pair: "EGC/USDT",
                 usdValue: currency(cbData.data.result.last, {
                     precision: 9
                 }).format(),

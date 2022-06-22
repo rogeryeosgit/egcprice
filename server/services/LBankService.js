@@ -13,6 +13,7 @@ var LBankService = {
             lBankData = await axios.get(LBankUrl);
             price = {
                 exchangeName: 'LBank',
+                pair: "EGC/USDT",
                 usdValue: currency(lBankData.data.data[0].ticker.latest, {
                     precision: 9
                 }).format(),

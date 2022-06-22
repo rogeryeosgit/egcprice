@@ -23,10 +23,10 @@
         <slot name="title" />
 
         <template v-if="title && !isAverage">
-          <a :href="exchangeURL" target="_blank" :title="'EverGrow Coin on ' + title + ' Exchange'">{{title}}</a> EGC Price
+          <a :href="exchangeURL" target="_blank" :title="'EverGrow Coin on ' + title + ' Exchange'">{{title}}</a> {{ pair }} Price
         </template>
         <template v-if="title && isAverage">
-          {{title}} EGC Price
+          {{ title }} {{ pair }} Price
         </template>
         <div class="text-subtitle-1 mb-n4">
           <slot name="subtitle" />
@@ -42,12 +42,12 @@
 
     <template v-if="$slots.actions">
       <v-divider class="mt-2 mx-4" />
-      <v-card-actions class="px-4 text-caption grey--text">
+      <v-card-actions class="px-4 text-caption grey--text text-truncate">
         <slot name="actions" />
         <v-spacer />
-        <template v-if="isPancakeSwap">
+        <div v-if="isPancakeSwap">
           Powered by CoinGecko
-        </template>
+        </div>
       </v-card-actions>
     </template>
   </AppCard>
@@ -71,6 +71,7 @@ export default {
     iconSmall: Boolean,
     subtitle: String,
     title: String,
+    pair: String,
     exchangeURL: String,
   },
 

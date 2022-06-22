@@ -14,6 +14,7 @@ var BiboxService = {
             var eV24Hr = calculate24HrVolume(bbData.data.result.vol, bbData.data.result.high, bbData.data.result.low);
             price = {
                 exchangeName: 'Bibox',
+                pair: "EGC/USDT",
                 usdValue: currency(bbData.data.result.last, {
                     precision: 9
                 }).format(),

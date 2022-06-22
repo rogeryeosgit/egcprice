@@ -13,6 +13,7 @@ var DigiFinexService = {
             dfData = await axios.get(DFUrl);
             price = {
                 exchangeName: 'DigiFinex',
+                pair: "EGC/USDT",
                 usdValue: currency(dfData.data.ticker[0].last, {
                     precision: 9
                 }).format(),

@@ -13,6 +13,7 @@ var BitMartService = {
             mData = await axios.get(BMUrl);
             price = {
                 exchangeName: 'BitMart',
+                pair: "EGC/USDT",
                 usdValue: currency(mData.data.data.tickers[0].last_price, {
                     precision: 9
                 }).format(),

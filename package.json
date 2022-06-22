@@ -12,8 +12,8 @@
   },
   "dependencies": {
     "@nuxtjs/axios": "^5.3.6",
-    "axios": "^0.24.0",
     "@nuxtjs/vuetify": "^1.0.0",
+    "axios": "^0.24.0",
     "cross-env": "^5.2.0",
     "currency.js": "^2.0.4",
     "express": "^4.16.4",

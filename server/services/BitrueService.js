@@ -13,6 +13,7 @@ var BitrueService = {
             mData = await axios.get(BTUrl);
             price = {
                 exchangeName: 'Bitrue',
+                pair: "EGC/USDT",
                 usdValue: currency(mData.data[0].lastPrice, {
                     precision: 9
                 }).format(),

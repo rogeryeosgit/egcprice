@@ -41,6 +41,7 @@ var AveragePriceEGCService = {
 
         var averageData = {
             exchangeName: 'Average',
+            pair: "EGC/USDT",
             usdValue: currency(averagePrice, {
                 precision: 9
             }).format(),

@@ -25,6 +25,7 @@ var MoralisService = {
             mData = await Moralis.Web3API.token.getTokenPrice(options);
             price = {
                 exchangeName: exchangeName,
+                pair: "EGC/USDT",
                 usdValue: currency(mData.usdPrice, {
                     precision: 9
                 }).format(),

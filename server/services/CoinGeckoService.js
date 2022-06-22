@@ -13,6 +13,7 @@ var CoinGeckoService = {
             cbData = await axios.get(CoinGeckoUrl);
             price = {
                 exchangeName: 'PancakeSwap',
+                pair: "EGC/USDT",
                 usdValue: currency(cbData.data.tickers[0].converted_last.usd, {
                     precision: 9
                 }).format(),

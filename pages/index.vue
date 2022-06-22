@@ -44,6 +44,7 @@ export default {
           color: '#FFFFFF',
           icon: pList[x].exchangeName,
           title: pList[x].exchangeName,
+          pair: pList[x].pair,
           value: pList[x].usdValue,
           exchangeURL: pList[x].exchangeURL,
         })

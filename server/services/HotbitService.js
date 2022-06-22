@@ -13,6 +13,7 @@ var HotbitService = {
             hbData = await axios.get(HotbitUrl);
             price = {
                 exchangeName: 'Hotbit',
+                pair: "EGC/USDT",
                 usdValue: currency(hbData.data.result.last, {
                     precision: 9
                 }).format(),
