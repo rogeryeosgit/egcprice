@@ -3,7 +3,6 @@ const consola = require('consola');
 const { Nuxt, Builder } = require('nuxt');
 const app = express();
 
-var MoralisService = require("./services/MoralisService");
 var CacheService = require("./services/CacheService");
 
 // Import and Set Nuxt.js options
@@ -23,7 +22,6 @@ async function start () {
     await builder.build()
   }
 
-  MoralisService.init();
   CacheService.init();
 
   // Give nuxt middleware to express
